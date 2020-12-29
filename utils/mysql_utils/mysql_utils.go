@@ -1,6 +1,7 @@
 package mysql_utils
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/fabres21s/bookstore_users-api/utils/errors"
@@ -19,6 +20,7 @@ func ParseError(err error) *errors.RestErr {
 		if strings.Contains(err.Error(), errorNoRows) {
 			return errors.NewNotFoundError("no record matching given id")
 		}
+		fmt.Printf("%v", err.Error())
 		return errors.NewInternalServerError("error parsing database response")
 	}
 
